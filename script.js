@@ -1,31 +1,57 @@
+function getValues() {
+    let a = document.getElementById("num1").value;
+    let b = document.getElementById("num2").value;
+
+    if (a === "" || b === "") {
+        document.getElementById("result").innerHTML = "Result: Please enter both numbers";
+        return null;
+    }
+
+    return {
+        a: Number(a),
+        b: Number(b)
+    };
+}
+
 function add() {
-    let a = Number(document.getElementById("num1").value);
-    let b = Number(document.getElementById("num2").value);
+    let values = getValues();
+    if (!values) return;
 
     document.getElementById("result").innerHTML =
-        "Result: " + (a + b);
+        "Result: " + (values.a + values.b);
 }
 
 function subtract() {
-    let a = Number(document.getElementById("num1").value);
-    let b = Number(document.getElementById("num2").value);
+    let values = getValues();
+    if (!values) return;
 
     document.getElementById("result").innerHTML =
-        "Result: " + (a - b);
+        "Result: " + (values.a - values.b);
 }
 
 function multiply() {
-    let a = Number(document.getElementById("num1").value);
-    let b = Number(document.getElementById("num2").value);
+    let values = getValues();
+    if (!values) return;
 
     document.getElementById("result").innerHTML =
-        "Result: " + (a * b);
+        "Result: " + (values.a * values.b);
 }
 
 function divide() {
-    let a = Number(document.getElementById("num1").value);
-    let b = Number(document.getElementById("num2").value);
+    let values = getValues();
+    if (!values) return;
+
+    if (values.b === 0) {
+        document.getElementById("result").innerHTML = "Result: Cannot divide by zero";
+        return;
+    }
 
     document.getElementById("result").innerHTML =
-        "Result: " + (a / b);
+        "Result: " + (values.a / values.b);
+}
+
+function clearFields() {
+    document.getElementById("num1").value = "";
+    document.getElementById("num2").value = "";
+    document.getElementById("result").innerHTML = "Result:";
 }
